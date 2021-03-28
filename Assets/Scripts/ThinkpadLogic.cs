@@ -84,11 +84,14 @@ public class ThinkpadLogic : MonoBehaviour
                         main.UpdateState(Main.Moist_Towelette_.ANGRY);
                         main.youssefManager.ChangeState(1);
                         main.youssefManager.PlayMusic();
+                        main.youssef.GetComponent<YoussefChase>().StartMoving();
                     }
 
+                    else
+                    {
+                        main.youssef.GetComponent<YoussefChase>().speed += 10;
+                    }
                     // bad stuff
-                    // MAKE YOUSSEF ANGIER (SPEED UP)
-                    // change state if not already angry.
                 }
 
                 currentProblem += 1;
@@ -112,8 +115,10 @@ public class ThinkpadLogic : MonoBehaviour
                         main.youssefManager.PlayMusic();
                     }
 
-                    // bad stuff
-                    // MAKE YOUSSEF ANGIER (SPEED UP)
+                    else
+                    {
+                        main.youssef.GetComponent<YoussefChase>().speed += 10;
+                    }
                 }
 
                 currentProblem += 1;
@@ -137,13 +142,14 @@ public class ThinkpadLogic : MonoBehaviour
                         main.youssefManager.PlayMusic();
                     }
 
-                    // bad stuff
-                    // MAKE YOUSSEF ANGIER (SPEED UP)
+                    else
+                    {
+                        main.youssef.GetComponent<YoussefChase>().GetComponent<NavMeshAgent>().speed += 10;
+                    }
                 }
 
                 currentProblem += 1;
                 Invoke("Complete", 1.5f);
-                // give banana and do other stuff like destroy it and make youssef faster based on questions wrong (out of 3)
                 break;
         }
     }

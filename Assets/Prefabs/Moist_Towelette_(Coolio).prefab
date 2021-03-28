@@ -23096,6 +23096,9 @@ GameObject:
   m_Component:
   - component: {fileID: 7486895140802321875}
   - component: {fileID: 7278203765557226732}
+  - component: {fileID: 6736194487700604908}
+  - component: {fileID: 8423897568055178811}
+  - component: {fileID: 6747113989802848564}
   m_Layer: 0
   m_Name: Moist_Towelette_(Coolio)
   m_TagString: Untagged
@@ -23153,6 +23156,55 @@ MonoBehaviour:
   angry: {fileID: 21300000, guid: 8b1f3a300d8d79f438f05395fe6c89e7, type: 3}
   face: {fileID: 5229663765024512773}
   soundtrack: {fileID: 2604973915932506532}
+--- !u!114 &6736194487700604908
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7486895140802321876}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c0bead3e747fb34ebc321359d99d1f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 0}
+  speed: 0
+--- !u!65 &8423897568055178811
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7486895140802321876}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.24, y: 1, z: 0.7}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!195 &6747113989802848564
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7486895140802321876}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.5
+  m_Speed: 3.5
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 1.4
+  m_BaseOffset: 0.7
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
 --- !u!1 &7486895140922623848
 GameObject:
   m_ObjectHideFlags: 0
