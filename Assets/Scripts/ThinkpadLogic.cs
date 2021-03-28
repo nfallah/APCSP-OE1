@@ -58,7 +58,6 @@ public class ThinkpadLogic : MonoBehaviour
                 {
                     problem1.color = new Color(0, 1, 0);
                     // good stuff
-
                 }
 
                 else
@@ -68,6 +67,7 @@ public class ThinkpadLogic : MonoBehaviour
                     if (main.currentState == Main.Moist_Towelette_.HAPPY)
                     {
                         main.UpdateState(Main.Moist_Towelette_.ANGRY);
+                        main.youssefManager.ChangeState(1);
                     }
 
                     // bad stuff
@@ -92,6 +92,7 @@ public class ThinkpadLogic : MonoBehaviour
                     if (main.currentState == Main.Moist_Towelette_.HAPPY)
                     {
                         main.UpdateState(Main.Moist_Towelette_.ANGRY);
+                        main.youssefManager.ChangeState(1);
                     }
 
                     // bad stuff
@@ -115,6 +116,7 @@ public class ThinkpadLogic : MonoBehaviour
                     if (main.currentState == Main.Moist_Towelette_.HAPPY)
                     {
                         main.UpdateState(Main.Moist_Towelette_.ANGRY);
+                        main.youssefManager.ChangeState(1);
                     }
 
                     // bad stuff

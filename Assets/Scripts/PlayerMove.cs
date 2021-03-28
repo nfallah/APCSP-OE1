@@ -4,7 +4,15 @@ using UnityEngine;
 
 public class PlayerMove : MonoBehaviour
 {
-    [SerializeField] float movementSpeed;
+    public float movementSpeed;
+    public float normalSpeed;
+    public float fastSpeed;
+
+    private void Awake()
+    {
+        normalSpeed = movementSpeed;
+        fastSpeed = movementSpeed * 2;
+    }
 
     private void Update()
     {

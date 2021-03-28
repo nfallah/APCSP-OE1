@@ -16,6 +16,15 @@ public class Main : MonoBehaviour
     public GameObject[] images;
     public GameObject buttons;
 
+    public GameObject youssef;
+    public YoussefManager youssefManager;
+
+    private void Awake()
+    {
+        youssefManager = youssef.GetComponent<YoussefManager>();
+        youssefManager.ChangeState(0);
+    }
+
     private void Start()
     {
         UpdateState(Moist_Towelette_.HAPPY);
@@ -55,9 +64,9 @@ public class Main : MonoBehaviour
         GetComponent<BananaDetection>().enabled = false;
         GetComponent<ThinkpadLogic>().enabled = true;
         GetComponent<ProblemManager>().enabled = true;
-
-        // make sure to disable movement
-        // also remove sprint meter on the bottom
+        GetComponent<SprintManager>().Deactivate();
+        FindObjectOfType<PlayerMove>().movementSpeed = 0;
+        FindObjectOfType<PlayerLook>().enabled = false;
     }
 
     public void HideThinkpad()
@@ -78,8 +87,8 @@ public class Main : MonoBehaviour
         GetComponent<ThinkpadLogic>().Reset();
         GetComponent<ThinkpadLogic>().enabled = false;
         GetComponent<ProblemManager>().enabled = false;
-
-        // make sure to reenable movement
-        // show sprint bar again
+        GetComponent<SprintManager>().Reactivate();
+        FindObjectOfType<PlayerMove>().movementSpeed = FindObjectOfType<PlayerMove>().normalSpeed;
+        FindObjectOfType<PlayerLook>().enabled = true;
     }
 }
