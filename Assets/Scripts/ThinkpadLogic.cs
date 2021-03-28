@@ -5,8 +5,11 @@ using UnityEngine.UI;
 
 public class ThinkpadLogic : MonoBehaviour
 {
-    [SerializeField] Image problem1, problem2, problem3;
+    public bool isGlitched;
+
+    [SerializeField] Image problem1, problem2, problem3, questionBackground;
     [SerializeField] Text questionText, problemText;
+    [SerializeField] Sprite glitchedBackground;
 
     Main main;
 
@@ -25,6 +28,13 @@ public class ThinkpadLogic : MonoBehaviour
 
     void Complete()
     {
+        if (isGlitched)
+        {
+            questionBackground.sprite = null;
+        }
+
+        GetComponent<BananaCounter>().UpdateBananas();
+
         GetComponent<Main>().HideThinkpad();
     }
 
@@ -43,6 +53,11 @@ public class ThinkpadLogic : MonoBehaviour
                 break;
 
             case 3:
+                if (isGlitched)
+                {
+                    questionBackground.sprite = glitchedBackground;
+                }
+
                 questionText.text = "JUNGLE CLASS Q3:";
                 problemText.text = GetComponent<ProblemManager>().thirdProblem;
                 break;
@@ -68,6 +83,7 @@ public class ThinkpadLogic : MonoBehaviour
                     {
                         main.UpdateState(Main.Moist_Towelette_.ANGRY);
                         main.youssefManager.ChangeState(1);
+                        main.youssefManager.PlayMusic();
                     }
 
                     // bad stuff
@@ -93,6 +109,7 @@ public class ThinkpadLogic : MonoBehaviour
                     {
                         main.UpdateState(Main.Moist_Towelette_.ANGRY);
                         main.youssefManager.ChangeState(1);
+                        main.youssefManager.PlayMusic();
                     }
 
                     // bad stuff
@@ -104,7 +121,7 @@ public class ThinkpadLogic : MonoBehaviour
                 break;
 
             case 3:
-                if (answer == GetComponent<ProblemManager>().thirdAnswer)
+                if (answer == GetComponent<ProblemManager>().thirdAnswer && isGlitched == false)
                 {
                     problem3.color = new Color(0, 1, 0);
                 }
@@ -117,6 +134,7 @@ public class ThinkpadLogic : MonoBehaviour
                     {
                         main.UpdateState(Main.Moist_Towelette_.ANGRY);
                         main.youssefManager.ChangeState(1);
+                        main.youssefManager.PlayMusic();
                     }
 
                     // bad stuff
@@ -124,7 +142,7 @@ public class ThinkpadLogic : MonoBehaviour
                 }
 
                 currentProblem += 1;
-                Invoke("Complete", 1.4f);
+                Invoke("Complete", 1.5f);
                 // give banana and do other stuff like destroy it and make youssef faster based on questions wrong (out of 3)
                 break;
         }

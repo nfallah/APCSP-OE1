@@ -28,8 +28,20 @@ public class BananaDetection : MonoBehaviour
             {
                 GetComponent<ProblemManager>().GenerateProblems();
                 GetComponent<ThinkpadLogic>().currentProblem = 1;
+
+                if (raycastHit.transform.gameObject.GetComponent<BananaProperties>().isGlitched)
+                {
+                    GetComponent<ThinkpadLogic>().isGlitched = true;
+                }
+
+                else
+                {
+                    GetComponent<ThinkpadLogic>().isGlitched = false;
+                }
+
                 GetComponent<ThinkpadLogic>().StartProcess();
                 GetComponent<Main>().ShowThinkpad();
+                Destroy(raycastHit.transform.gameObject);
             }
         }
 

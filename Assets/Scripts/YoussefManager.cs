@@ -8,6 +8,8 @@ public class YoussefManager : MonoBehaviour
     [SerializeField] Sprite happy, angry;
     [SerializeField] GameObject face;
 
+    [SerializeField] AudioSource soundtrack;
+
     public void ChangeState(int state)
     {
         switch (state)
@@ -25,4 +27,9 @@ public class YoussefManager : MonoBehaviour
                 break;
         }
     }
-}
+
+    public void PlayMusic()
+    {
+        soundtrack.Play();
+    }
+}   

@@ -19,6 +19,11 @@ public class Main : MonoBehaviour
     public GameObject youssef;
     public YoussefManager youssefManager;
 
+    public void VictoryCondition()
+    {
+        print("ALL BANANAS OBTAINED");
+    }
+
     private void Awake()
     {
         youssefManager = youssef.GetComponent<YoussefManager>();
@@ -67,6 +72,7 @@ public class Main : MonoBehaviour
         GetComponent<SprintManager>().Deactivate();
         FindObjectOfType<PlayerMove>().movementSpeed = 0;
         FindObjectOfType<PlayerLook>().enabled = false;
+        GetComponent<BananaCounter>().bananaText.gameObject.SetActive(false);
     }
 
     public void HideThinkpad()
@@ -90,5 +96,6 @@ public class Main : MonoBehaviour
         GetComponent<SprintManager>().Reactivate();
         FindObjectOfType<PlayerMove>().movementSpeed = FindObjectOfType<PlayerMove>().normalSpeed;
         FindObjectOfType<PlayerLook>().enabled = true;
+        GetComponent<BananaCounter>().bananaText.gameObject.SetActive(true);
     }
 }
