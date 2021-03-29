@@ -5,6 +5,10 @@ using UnityEngine.UI;
 
 public class Main : MonoBehaviour
 {
+    [SerializeField] AudioClip finalBoss;
+
+    [SerializeField] Text run;
+
     public enum Moist_Towelette_ { ANGRY, HAPPY }
 
     public Moist_Towelette_ currentState;
@@ -21,13 +25,21 @@ public class Main : MonoBehaviour
 
     public void VictoryCondition()
     {
-        print("ALL BANANAS OBTAINED");
+        youssefManager.soundtrack.Stop();
+        youssefManager.soundtrack.clip = finalBoss;
+        youssefManager.soundtrack.Play();
+        youssef.GetComponent<YoussefChase>().GetComponent<UnityEngine.AI.NavMeshAgent>().speed = 20f;
+        FindObjectOfType<PlayerMove>().normalSpeed = 12.5f;
+        FindObjectOfType<PlayerMove>().fastSpeed = 20;
+        FindObjectOfType<PlayerMove>().movementSpeed = 12.5f;
+        run.gameObject.SetActive(true);
     }
 
     private void Awake()
     {
         youssefManager = youssef.GetComponent<YoussefManager>();
         youssefManager.ChangeState(0);
+        run.gameObject.SetActive(false);
     }
 
     private void Start()

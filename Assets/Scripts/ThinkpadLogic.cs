@@ -7,6 +7,8 @@ public class ThinkpadLogic : MonoBehaviour
 {
     public bool isGlitched;
 
+    public float speedIncrement;
+
     [SerializeField] Image problem1, problem2, problem3, questionBackground;
     [SerializeField] Text questionText, problemText;
     [SerializeField] Sprite glitchedBackground;
@@ -89,7 +91,7 @@ public class ThinkpadLogic : MonoBehaviour
 
                     else
                     {
-                        main.youssef.GetComponent<YoussefChase>().speed += 10;
+                        main.youssef.GetComponent<YoussefChase>().GetComponent<UnityEngine.AI.NavMeshAgent>().speed += speedIncrement;
                     }
                     // bad stuff
                 }
@@ -113,11 +115,12 @@ public class ThinkpadLogic : MonoBehaviour
                         main.UpdateState(Main.Moist_Towelette_.ANGRY);
                         main.youssefManager.ChangeState(1);
                         main.youssefManager.PlayMusic();
+                        main.youssef.GetComponent<YoussefChase>().StartMoving();
                     }
 
                     else
                     {
-                        main.youssef.GetComponent<YoussefChase>().speed += 10;
+                        main.youssef.GetComponent<YoussefChase>().GetComponent<UnityEngine.AI.NavMeshAgent>().speed += speedIncrement;
                     }
                 }
 
@@ -140,16 +143,17 @@ public class ThinkpadLogic : MonoBehaviour
                         main.UpdateState(Main.Moist_Towelette_.ANGRY);
                         main.youssefManager.ChangeState(1);
                         main.youssefManager.PlayMusic();
+                        main.youssef.GetComponent<YoussefChase>().StartMoving();
                     }
 
                     else
                     {
-                        main.youssef.GetComponent<YoussefChase>().GetComponent<NavMeshAgent>().speed += 10;
+                        main.youssef.GetComponent<YoussefChase>().GetComponent<UnityEngine.AI.NavMeshAgent>().speed += speedIncrement;
                     }
                 }
 
                 currentProblem += 1;
-                Invoke("Complete", 1.5f);
+                Invoke("Complete", 0.75f);
                 break;
         }
     }

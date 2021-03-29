@@ -1,21 +1,28 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class YoussefChase : MonoBehaviour
 {
+    [SerializeField] Image funny;
+
+    [SerializeField] AudioClip jumpscare;
+
     public GameObject player;
 
     Vector3 distanceTo;
 
     NavMeshAgent navMeshAgent;
 
-    public float speed;
-
     bool shouldFollow;
 
-    float jumpscareDistance;
+    public float jumpscareDistance;
+
+    void Quit()
+    {
+        SceneManager.LoadScene("Menu");
+    }
 
     private void Update()
     {
@@ -25,18 +32,30 @@ public class YoussefChase : MonoBehaviour
 
         if (shouldFollow)
         {
-            if (Vector3.Distance(this.transform.position, player.transform.position) > 1.25)
+            if (Vector3.Distance(this.transform.position, player.transform.position) > jumpscareDistance)
             {
                 navMeshAgent.SetDestination(player.transform.position);
             }
             
             else
             {
+                shouldFollow = false;
                 navMeshAgent.velocity = Vector3.zero;
                 navMeshAgent.isStopped = true;
-                print("YOU ARE DEAD");
+                FindObjectOfType<Main>().ShowThinkpad();
+                funny.gameObject.SetActive(true);
+                this.GetComponent<YoussefManager>().soundtrack.Stop();
+                this.GetComponent<YoussefManager>().soundtrack.loop = false;
+                this.GetComponent<YoussefManager>().soundtrack.clip = jumpscare;
+                this.GetComponent<YoussefManager>().soundtrack.Play();
+                Invoke("Quit", 2.15f);
             }
         }
+    }
+
+    private void Awake()
+    {
+        funny.gameObject.SetActive(false);    
     }
 
     private void Start()

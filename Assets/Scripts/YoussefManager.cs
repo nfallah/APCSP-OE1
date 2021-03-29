@@ -8,7 +8,7 @@ public class YoussefManager : MonoBehaviour
     [SerializeField] Sprite happy, angry;
     [SerializeField] GameObject face;
 
-    [SerializeField] AudioSource soundtrack;
+    public AudioSource soundtrack;
 
     public void ChangeState(int state)
     {
