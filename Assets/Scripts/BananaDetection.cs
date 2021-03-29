@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class BananaDetection : MonoBehaviour
 {
-    [SerializeField] int raycastDistance;
+    [SerializeField] float raycastDistance;
     [SerializeField] LayerMask bananaLayer;
     public Sprite crosshair1, crosshair2;
     public KeyCode bananaKey;

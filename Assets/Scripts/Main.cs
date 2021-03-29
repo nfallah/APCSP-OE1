@@ -2,10 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class Main : MonoBehaviour
 {
+
+    public GameObject trigger;
+
     [SerializeField] AudioClip finalBoss;
+    [SerializeField] Image ending;
 
     [SerializeField] Text run;
 
@@ -23,16 +28,30 @@ public class Main : MonoBehaviour
     public GameObject youssef;
     public YoussefManager youssefManager;
 
+    void OpenLevel()
+    {
+        SceneManager.LoadScene(0);
+    }
+
+    public void Victory()
+    {
+        youssef.SetActive(false);
+        ending.gameObject.SetActive(true);
+        Invoke("OpenLevel", 2.15f);
+    }
+
     public void VictoryCondition()
     {
         youssefManager.soundtrack.Stop();
         youssefManager.soundtrack.clip = finalBoss;
         youssefManager.soundtrack.Play();
-        youssef.GetComponent<YoussefChase>().GetComponent<UnityEngine.AI.NavMeshAgent>().speed = 20f;
+        youssef.GetComponent<YoussefChase>().GetComponent<UnityEngine.AI.NavMeshAgent>().speed = 15f;
         FindObjectOfType<PlayerMove>().normalSpeed = 12.5f;
         FindObjectOfType<PlayerMove>().fastSpeed = 20;
         FindObjectOfType<PlayerMove>().movementSpeed = 12.5f;
+        trigger.SetActive(true);
         run.gameObject.SetActive(true);
+        ShowThinkpad();
     }
 
     private void Awake()
@@ -40,6 +59,8 @@ public class Main : MonoBehaviour
         youssefManager = youssef.GetComponent<YoussefManager>();
         youssefManager.ChangeState(0);
         run.gameObject.SetActive(false);
+        trigger.SetActive(false);
+        ending.gameObject.SetActive(false);
     }
 
     private void Start()

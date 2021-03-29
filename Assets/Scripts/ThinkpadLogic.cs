@@ -153,7 +153,7 @@ public class ThinkpadLogic : MonoBehaviour
                 }
 
                 currentProblem += 1;
-                Invoke("Complete", 0.75f);
+                Invoke("Complete", 1);
                 break;
         }
     }

@@ -21,7 +21,7 @@ public class YoussefChase : MonoBehaviour
 
     void Quit()
     {
-        SceneManager.LoadScene("Menu");
+        SceneManager.LoadScene(0);
     }
 
     private void Update()
