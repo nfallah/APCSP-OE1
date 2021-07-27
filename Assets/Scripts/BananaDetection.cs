@@ -17,7 +17,7 @@ public class BananaDetection : MonoBehaviour
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit raycastHit;
 
-        if (Physics.Raycast(ray, out raycastHit, raycastDistance, bananaLayer))
+        if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out raycastHit, raycastDistance, bananaLayer))
         {
             if (crosshair.sprite != crosshair2)
             {
@@ -26,7 +26,7 @@ public class BananaDetection : MonoBehaviour
 
             if (Input.GetKeyDown(bananaKey))
             {
-                GetComponent<ProblemManager>().GenerateProblems();
+                GetComponent<ProblemManager>().GenerateProblems(raycastHit.transform.gameObject.GetComponent<BananaProperties>().isGlitched);
                 GetComponent<ThinkpadLogic>().currentProblem = 1;
 
                 if (raycastHit.transform.gameObject.GetComponent<BananaProperties>().isGlitched)

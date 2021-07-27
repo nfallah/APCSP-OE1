@@ -28,7 +28,7 @@ public class SprintManager : MonoBehaviour
     }
     private void Update()
     {
-        if (Input.GetKey(sprintKey) && shouldSprint && isDeactivated == false)
+        if (Input.GetKey(sprintKey) && shouldSprint && isDeactivated == false && (Input.GetAxisRaw("Horizontal") != 0 || Input.GetAxisRaw("Vertical") != 0))
         {
             stamina = Mathf.Clamp(stamina - lossRate * Time.deltaTime, 0, maxStamina);
             barPercent = stamina / maxStamina;
@@ -40,6 +40,7 @@ public class SprintManager : MonoBehaviour
                 shouldSprint = false;
                 Invoke("Continue", 2);
                 player.movementSpeed = player.normalSpeed;
+                print("lol");
             }
 
             else
@@ -51,7 +52,19 @@ public class SprintManager : MonoBehaviour
             }
         }
 
-        else if (stamina < maxStamina && shouldSprint)
+        else if (stamina < maxStamina && shouldSprint && (Input.GetAxisRaw("Horizontal") != 0 || Input.GetAxisRaw("Vertical") != 0))
+        {
+            if (player.movementSpeed > player.normalSpeed)
+            {
+                player.movementSpeed = player.normalSpeed;
+            }
+
+            stamina = Mathf.Clamp(stamina + recoveryRate/2.5f * Time.deltaTime, 0, maxStamina);
+            barPercent = stamina / maxStamina;
+            front.gameObject.transform.localScale = new Vector3(barPercent, 1, 1);
+        }
+
+        else if (stamina < maxStamina && shouldSprint && Input.GetAxisRaw("Horizontal") == 0 && Input.GetAxisRaw("Vertical") == 0)
         {
             if (player.movementSpeed > player.normalSpeed)
             {

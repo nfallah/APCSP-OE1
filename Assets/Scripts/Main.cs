@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
@@ -45,7 +43,7 @@ public class Main : MonoBehaviour
         youssefManager.soundtrack.Stop();
         youssefManager.soundtrack.clip = finalBoss;
         youssefManager.soundtrack.Play();
-        youssef.GetComponent<YoussefChase>().GetComponent<UnityEngine.AI.NavMeshAgent>().speed = 15f;
+        youssef.GetComponent<YoussefChase>().GetComponent<UnityEngine.AI.NavMeshAgent>().speed = 17.5f;
         FindObjectOfType<PlayerMove>().normalSpeed = 12.5f;
         FindObjectOfType<PlayerMove>().fastSpeed = 20;
         FindObjectOfType<PlayerMove>().movementSpeed = 12.5f;

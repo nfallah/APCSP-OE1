@@ -6,11 +6,31 @@ public class ProblemManager : MonoBehaviour
 {
     public string firstProblem, secondProblem, thirdProblem;
     public int firstAnswer, secondAnswer, thirdAnswer;
-    public void GenerateProblems()
+    public void GenerateProblems(bool isGlitched)
     {
-        FirstProblem();
-        SecondProblem();
-        ThirdProblem();
+        for (int i = 0; i < 3; i++)
+        {
+            switch (i)
+            {
+                case 0:
+
+                    FirstProblem();
+                    break;
+
+                case 1:
+
+                    SecondProblem();
+                    break;
+
+                case 2:
+
+                    if (!isGlitched)
+                    {
+                        ThirdProblem();
+                    }
+                    break;
+            }
+        }
     }
 
     public void FirstProblem()

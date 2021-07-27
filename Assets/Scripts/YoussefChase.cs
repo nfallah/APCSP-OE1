@@ -5,6 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class YoussefChase : MonoBehaviour
 {
+    public bool isScared;
+
     [SerializeField] Image funny;
 
     [SerializeField] AudioClip jumpscare;
@@ -21,7 +23,10 @@ public class YoussefChase : MonoBehaviour
 
     void Quit()
     {
-        SceneManager.LoadScene(0);
+        GameObject test = new GameObject();
+        test.AddComponent<VariablePasser>();
+        test.GetComponent<VariablePasser>().sensitivity = FindObjectOfType<PlayerLook>().rotationSpeed;
+        SceneManager.LoadScene(1);
     }
 
     private void Update()
@@ -48,6 +53,8 @@ public class YoussefChase : MonoBehaviour
                 this.GetComponent<YoussefManager>().soundtrack.loop = false;
                 this.GetComponent<YoussefManager>().soundtrack.clip = jumpscare;
                 this.GetComponent<YoussefManager>().soundtrack.Play();
+                Cursor.lockState = CursorLockMode.Locked;
+                isScared = true;
                 Invoke("Quit", 2.15f);
             }
         }
